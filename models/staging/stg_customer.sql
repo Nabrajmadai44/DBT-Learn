@@ -1,6 +1,6 @@
 
 {{config(
-    materialized = 'incremental'
+    materialized = 'table'
 )}}
 
 with src as (
@@ -9,9 +9,9 @@ with src as (
         'postgres',
         'customer'
     )}}
-    {% if is_incremental() %}
-        where modified_at > (select max(modified_at) from {{ this }})
-    {% endif %}
+    -- {% if is_incremental() %}
+    --     where modified_at > (select max(modified_at) from {{ this }})
+    -- {% endif %}
 )
 select
     cust_id,
@@ -25,5 +25,7 @@ select
     mother_name,
     occupation,
     education,
-    nationality
+    nationality,
+    created_date,
+    modified_date
 from src
