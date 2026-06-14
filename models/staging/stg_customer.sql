@@ -9,9 +9,6 @@ with src as (
         'postgres',
         'customer'
     )}}
-    -- {% if is_incremental() %}
-    --     where modified_at > (select max(modified_at) from {{ this }})
-    -- {% endif %}
 )
 select
     cust_id,

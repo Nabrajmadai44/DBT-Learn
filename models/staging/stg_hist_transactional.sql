@@ -1,7 +1,7 @@
 {{config(
     materialized = 'incremental',
     incremental_strategy = 'append',
-    unique_key = 'tran_id'
+    unique_key = 'account_id'
 )}}
 
 with src as (
