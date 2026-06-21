@@ -1,6 +1,11 @@
 
 {{config(
-    materialized = 'table'
+    materialized = 'table',
+    on_schema_change = 'sync_all_columns',
+        post_hook = [
+        "Create index if not exists idx_slv_customer_nationality on {{ this }} (nationality)",
+        "Cluster {{ this }} using idx_slv_customer_nationality"
+    ],
 )}}
 
 with src as (
@@ -24,5 +29,6 @@ select
     education,
     nationality,
     created_date,
-    modified_date
+    modified_date,
+    temporary_address
 from src

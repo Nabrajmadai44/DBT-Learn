@@ -42,10 +42,10 @@ models:
       +materialized: table
       +schema: silver
 
-    seeds:
-      +materialized: table
-      +schema: seeds_schema
+seeds:
+  dbt_learn:
+    +schema: silver_seed
 
-    snapshots:
-      +materialized: table
-      +schema: gold
+snapshots:
+  dbt_learn:
+    +schema: gold

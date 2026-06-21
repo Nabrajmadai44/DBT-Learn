@@ -14,6 +14,7 @@ with src as (
 {% endif %}
 )
 select
+    {{ dbt_utils.surrogate_key(['tran_id', 'modified_date']) }} AS tran_sk,
     tran_id,
     account_id,
     tran_amount,
